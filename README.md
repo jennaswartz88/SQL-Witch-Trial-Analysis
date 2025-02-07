@@ -7,6 +7,10 @@ This project is focused on practicing SQL queries and extracting insights from t
 
 I’ve always been interested in historical patterns of social control, especially how certain groups—often marginalized ones—become targets of legal or societal punishment. By analyzing this dataset, I hope to understand trends in witchcraft accusations and how they might reflect larger historical forces.  
 
+## Files in This Repo  
+- `witchcraft_analysis.ipynb` – The Jupyter Notebook with SQL queries and findings.  
+- `witchcraft_analysis.html` – The HTML version for quick viewing.  
+
 ## Dataset / Database Info  
 The **Witchcraft database** is hosted on a MySQL server and contains records of individuals accused of witchcraft, their demographics, trial outcomes, and other contextual details. This dataset provides an opportunity to explore historical patterns and trends in accusations.  
 
