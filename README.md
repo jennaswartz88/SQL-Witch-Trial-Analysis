@@ -5,45 +5,43 @@
 ## Project Overview  
 This project is focused on practicing SQL queries and extracting insights from the **Witchcraft** database.  
 
-I’ve always been interested in historical patterns of social control, especially how certain groups—often marginalized ones—become targets of legal or societal punishment. By analyzing this dataset, I hope to understand trends in witchcraft accusations and how they might reflect larger historical forces.  
+I have always been interested in the history of witch trials, and I believe it's important to recognize the many parallels that exist between historic witch trials and ongoing issues of marginalized groups becoming targets of legal and societal punishment. By analyzing this dataset, I hope to understand trends in witchcraft accusations and how they might reflect larger historical forces.  
 
 ## Files in This Repo  
-- `witchcraft_analysis.ipynb` – The Jupyter Notebook with SQL queries and findings.  
-- `witchcraft_analysis.html` – The HTML version for quick viewing.  
+- `witchcraft_analysis.ipynb` – Jupyter Notebook with SQL queries and findings.  
+- `witchcraft_analysis.html` – HTML version for quick viewing.  
 
 ## Dataset / Database Info  
-The **Witchcraft database** is hosted on a MySQL server and contains records of individuals accused of witchcraft, their demographics, trial outcomes, and other contextual details. This dataset provides an opportunity to explore historical patterns and trends in accusations.  
+The **Witchcraft database** is hosted on a MySQL server and contains records of individuals accused of witchcraft, certain demographic characteristics, trial outcomes, evidence, etc. 
 
 ## SQL Concepts Practiced  
 Throughout this project, I explored several key SQL techniques, including:  
 
-- **Filtering & Aggregation**: Used `WHERE`, `GROUP BY`, and `HAVING` to analyze trends.  
+- **Filtering & Aggregation**: Used `WHERE`, `GROUP BY`, and `FROM` to analyze trends on select data.  
 - **Joins**: Combined tables to examine relationships between different variables.  
-- **Subqueries**: Extracted specific subsets of data for deeper insights.  
-- **Sorting & Ranking**: Used `ORDER BY` and `LIMIT` to identify key patterns.  
+- **Subqueries**: Extracted specific subsets of data for clearer insights.  
+- **Counting & Ranking**: Used `ORDER BY` and `COUNT` to identify key patterns.  
 
 ## Key Findings  
-Some of the interesting insights I found:  
+Some of my interesting findings:
 
-- **Gender Disparity**: The majority of accused individuals were women, but the conviction rates varied by gender.  
-- **Regional Trends**: Some areas had significantly higher accusation rates, potentially due to social or political factors.  
-- **Trial Outcomes**: A surprising number of accused individuals were acquitted or received lesser punishments.  
-- **Temporal Patterns**: Accusations seemed to spike in certain years, possibly linked to historical events.  
+- **Gender Disparities**: The majority of accused individuals were women, but the majority of accusers were male. There was a maximum of 48 male accusers in one single trial.
+- **Trial Outcomes**: The most common sentencing outcome was execution, but the second most common sentencing type was the accused being released. Some were banished or excommunicated. On average, trials that resulted in a 'guilty' verdict involved about 1.3 more accusers than those resulting in a 'not guilty' verdict.
+- **Torture and Confessions**: Less than 25% of the trials actually involved a confession from the accused. There was a confession in 63.5% of torture trials even though the confession rate for all trials overall was only 23.5%. So it looks like torture played a crucial role in forcing confessions out of the accused when torture was involved.
 
 ## How to Run  
 If you want to explore this dataset yourself, you'll need:  
 
 1. **A Python Environment** with Jupyter Notebook and the `%load_ext sql` magic command.  
 2. **Access to the Witchcraft Database** (this project assumes a MySQL server setup).  
-3. **A MySQL Connector** like `sqlalchemy` (if running queries outside Jupyter).  
 
 Once set up, you can execute the queries within a Jupyter Notebook or any SQL environment.  
 
 ### Example Query  
-To get a sense of the most common accusations, you can run:  
+To determine the proportion of female accused, you can run:  
 
 ```sql
-SELECT accusation_type, COUNT(*) AS count  
-FROM accusations  
-GROUP BY accusation_type  
-ORDER BY count DESC;  
+num_female = %sql SELECT COUNT(*) FROM accused WHERE sex = 'Female'
+num_total = %sql SELECT COUNT(*) FROM accused
+proportion_female = num_female[0][0] / num_total[0][0]
+print(f"Propotion of accused that ar female: {proportion_female}")
